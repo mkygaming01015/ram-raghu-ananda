@@ -518,27 +518,110 @@ input, select, textarea { font-family: inherit; }
   background: rgba(0,0,0,0.3); z-index: 99;
 }
 
+@media (max-width: 1024px) {
+  .sidebar { width: 220px; }
+  .main-content { margin-left: 220px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); }
+  .sidebar { transform: translateX(-100%); width: 280px; }
   .sidebar.open { transform: translateX(0); }
   .sidebar-overlay.open { display: block; }
-  .hamburger-btn { display: flex; }
   .sidebar-close-btn { display: block; }
+  .hamburger-btn { display: flex; }
   .main-content { margin-left: 0; }
-  .header { padding: 0 16px; }
-  .page-content { padding: 16px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .stat-card { padding: 16px; }
-  .stat-card-value { font-size: 1.25rem; }
+  .header { padding: 0 12px; height: 56px; }
+  .header-left h1 { font-size: 1rem; }
   .header-search { display: none; }
-  .login-page { flex-direction: column; }
-  .login-left { padding: 32px 20px; }
+  .page-content { padding: 12px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-card { padding: 14px; }
+  .stat-card-value { font-size: 1.2rem; }
+  .stat-card-label { font-size: 0.7rem; }
+  .stat-card-icon { width: 40px; height: 40px; border-radius: 10px; }
+  .stat-card-icon svg { width: 20px; height: 20px; }
+  .stat-card-trend { font-size: 0.65rem; padding: 2px 6px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 12px; }
+  .card { border-radius: 10px; }
+  .card-header { padding: 14px 16px; }
+  .card-body { padding: 16px; }
+  .card-header h3 { font-size: 0.9rem; }
+  .data-table { font-size: 0.75rem; }
+  .data-table th, .data-table td { padding: 8px 6px; white-space: nowrap; }
+  .login-page { flex-direction: column; min-height: auto; }
+  .login-left { padding: 40px 20px 32px; }
   .login-left h1 { font-size: 1.5rem; }
-  .login-left .society-icon { width: 80px; height: 80px; font-size: 3rem; border-radius: 16px; }
-  .login-right { width: 100%; padding: 32px 20px; }
-  .data-table { font-size: 0.8rem; }
-  .data-table th, .data-table td { padding: 10px 8px; }
+  .login-left p { font-size: 0.85rem; }
+  .login-left .society-icon { width: 72px; height: 72px; font-size: 2.5rem; border-radius: 16px; margin-bottom: 16px; }
+  .login-right { width: 100%; padding: 28px 20px 40px; }
+  .login-card h2 { font-size: 1.4rem; }
+  .form-group label { font-size: 0.8rem; }
+  .form-group input, .form-group select, .form-group textarea { padding: 10px 14px; font-size: 0.875rem; }
+  .btn-lg { padding: 12px 24px; font-size: 0.9rem; }
+  .btn-sm { padding: 6px 12px; font-size: 0.75rem; }
+  .tab-bar { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .tab-item { padding: 6px 14px; font-size: 0.75rem; white-space: nowrap; flex-shrink: 0; }
+  .filter-bar { flex-direction: column; align-items: stretch; }
+  .filter-bar select, .filter-bar input { width: 100%; padding: 10px 14px; }
+  .filter-bar .btn { width: 100%; }
+  .quick-actions { flex-direction: column; }
+  .quick-action-btn { padding: 10px 16px; font-size: 0.8rem; justify-content: center; }
+  .notice-card { padding: 16px; }
+  .notice-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .contact-card { padding: 16px; flex-direction: column; text-align: center; }
+  .contact-card .contact-icon { margin: 0 auto; }
+  .contact-card .btn { margin-top: 12px; }
+  .qr-container { padding: 24px 16px; margin: 0 8px; }
+  .qr-details .detail-row { font-size: 0.8rem; }
+  .scanner-overlay { padding: 24px 16px; margin: 0; }
+  .scanner-frame { width: 200px; height: 200px; }
+  .modal { width: 95%; max-width: none; margin: 16px; }
+  .modal-header { padding: 16px 16px 12px; }
+  .modal-body { padding: 16px; }
+  .modal-footer { padding: 12px 16px 16px; }
+  .header-icon-btn { width: 36px; height: 36px; }
+  .toast { left: 12px; right: 12px; bottom: 12px; font-size: 0.8rem; }
+  .maintenance-progress { height: 6px; }
+  [style*="gridTemplateColumns: '1fr 1fr'"] { grid-template-columns: 1fr !important; }
+  .grid-2 > form [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  body { font-size: 14px; -webkit-text-size-adjust: 100%; }
+  img, svg { max-width: 100%; }
+  form > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .main-content { overflow-x: hidden; }
+  .page-content { overflow-x: hidden; }
+  .card { overflow: hidden; }
+  .card-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat-card { padding: 12px; }
+  .stat-card-value { font-size: 1.05rem; }
+  .stat-card-label { font-size: 0.65rem; }
+  .header-left h1 { font-size: 0.9rem; }
+  .login-left { padding: 32px 16px 24px; }
+  .login-left h1 { font-size: 1.3rem; }
+  .login-left p { font-size: 0.8rem; }
+  .login-left .society-icon { width: 60px; height: 60px; font-size: 2rem; border-radius: 12px; }
+  .login-left div[style*="gap: 32"] { flex-direction: column; gap: 8px !important; }
+  .login-right { padding: 24px 16px 32px; }
+  .page-content { padding: 8px; }
+  .card-header { padding: 12px 14px; }
+  .card-body { padding: 12px; }
+  .btn { padding: 10px 16px; font-size: 0.8rem; border-radius: 8px; }
+  .btn-lg { padding: 12px 20px; }
+  .data-table { font-size: 0.7rem; }
+  .data-table th { font-size: 0.65rem; padding: 6px 4px; }
+  .data-table td { padding: 6px 4px; }
+  .qr-code-box { width: 160px; height: 160px; }
+  .qr-code-box svg { width: 130px; height: 130px; }
+  .scanner-frame { width: 160px; height: 160px; }
+  .filter-bar { gap: 8px; }
+  .badge { padding: 3px 8px; font-size: 0.65rem; }
 }
 
 .filter-bar {
@@ -587,3 +670,17 @@ input, select, textarea { font-family: inherit; }
 .activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
 .activity-text { font-size: 0.875rem; color: var(--gray-700); }
 .activity-time { font-size: 0.75rem; color: var(--gray-400); margin-top: 2px; }
+
+@media (max-width: 768px) {
+  .page-content form > div[style*="grid-template-columns: 1fr 1fr"],
+  .page-content form > div[style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .page-content > div[style*="max-width: 700"],
+  .page-content > div[style*="max-width: 650"],
+  .page-content > div[style*="max-width: 600"],
+  .page-content > div[style*="max-width: 500"] {
+    max-width: 100% !important;
+  }
+}

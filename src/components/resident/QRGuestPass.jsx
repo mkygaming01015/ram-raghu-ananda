@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import ResidentLayout from './ResidentLayout';
 import { useApp } from '../../context/AppContext';
 import { Download, Share2, AlertCircle } from 'lucide-react';
+import { shareContent } from '../../utils/capacitor';
 
 export default function QRGuestPass() {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ export default function QRGuestPass() {
             <button className="btn btn-outline btn-block" style={{ flex: 1 }} onClick={() => addToast('Pass downloaded!')}>
               <Download size={16} /> Download
             </button>
-            <button className="btn btn-primary btn-block" style={{ flex: 1 }} onClick={() => addToast('Pass shared via WhatsApp!')}>
+            <button className="btn btn-primary btn-block" style={{ flex: 1 }} onClick={() => shareContent('Visitor Pass', `Pass ID: ${passData.passId} | Visitor: ${passData.visitorName || passData.name} | Flat: ${passData.flat}`, window.location.href)}>
               <Share2 size={16} /> Share Pass
             </button>
           </div>

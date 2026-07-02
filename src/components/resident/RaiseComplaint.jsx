@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ResidentLayout from './ResidentLayout';
 import { useApp } from '../../context/AppContext';
-import { AlertTriangle, Upload, CheckCircle } from 'lucide-react';
+import { AlertTriangle, Upload, CheckCircle, Camera, Image } from 'lucide-react';
+import { isNativeApp, takePicture, pickFromGallery } from '../../utils/capacitor';
 
 export default function RaiseComplaint() {
   const { addComplaint } = useApp();
@@ -10,7 +11,13 @@ export default function RaiseComplaint() {
   const [formData, setFormData] = useState({ category: '', priority: 'Medium', subject: '', description: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [photo, setPhoto] = useState(null);
   const categories = ['Plumbing', 'Electrical', 'Security', 'Parking', 'Common Area', 'Lift', 'Water Supply', 'Gardening', 'Housekeeping', 'Other'];
+
+  const handleCamera = async (source) => {
+    const dataUrl = source === 'camera' ? await takePicture() : await pickFromGallery();
+    if (dataUrl) setPhoto(dataUrl);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,11 +103,28 @@ export default function RaiseComplaint() {
                 </div>
                 <div className="form-group">
                   <label>Attach Photo (Optional)</label>
-                  <div style={{ border: '2px dashed var(--gray-200)', borderRadius: 8, padding: 32, textAlign: 'center', cursor: 'pointer', color: 'var(--gray-400)' }}>
-                    <Upload size={32} style={{ marginBottom: 8 }} />
-                    <div style={{ fontSize: '0.875rem' }}>Click to upload or drag and drop</div>
-                    <div style={{ fontSize: '0.75rem', marginTop: 4 }}>PNG, JPG up to 5MB</div>
-                  </div>
+                  {isNativeApp() ? (
+                    <div style={{ display: 'flex', gap: 12 }}>
+                      <button type="button" className="btn btn-outline" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }} onClick={() => handleCamera('camera')}>
+                        <Camera size={20} /> Camera
+                      </button>
+                      <button type="button" className="btn btn-outline" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }} onClick={() => handleCamera('gallery')}>
+                        <Image size={20} /> Gallery
+                      </button>
+                    </div>
+                  ) : (
+                    <div style={{ border: '2px dashed var(--gray-200)', borderRadius: 8, padding: 32, textAlign: 'center', cursor: 'pointer', color: 'var(--gray-400)' }}>
+                      <Upload size={32} style={{ marginBottom: 8 }} />
+                      <div style={{ fontSize: '0.875rem' }}>Click to upload or drag and drop</div>
+                      <div style={{ fontSize: '0.75rem', marginTop: 4 }}>PNG, JPG up to 5MB</div>
+                    </div>
+                  )}
+                  {photo && (
+                    <div style={{ marginTop: 12, position: 'relative' }}>
+                      <img src={photo} alt="Uploaded" style={{ width: '100%', maxHeight: 200, objectFit: 'cover', borderRadius: 8 }} />
+                      <button type="button" onClick={() => setPhoto(null)} style={{ position: 'absolute', top: 8, right: 8, background: 'var(--danger)', color: 'white', border: 'none', borderRadius: '50%', width: 24, height: 24, cursor: 'pointer', fontSize: '0.75rem' }}>✕</button>
+                    </div>
+                  )}
                 </div>
                 <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
                   <button type="button" className="btn btn-outline" onClick={() => navigate(-1)}>Cancel</button>

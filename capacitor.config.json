@@ -1,0 +1,26 @@
+{
+  "appId": "com.ramraghu.phase2",
+  "appName": "Ram Raghu Ananda Phase 2",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#2563EB"
+    },
+    "Camera": {
+      "permissions": ["camera", "photos"]
+    }
+  },
+  "android": {
+    "buildOptions": {
+      "keystorePath": null,
+      "releaseType": "APK"
+    }
+  },
+  "ios": {
+    "contentInset": "automatic"
+  }
+}
